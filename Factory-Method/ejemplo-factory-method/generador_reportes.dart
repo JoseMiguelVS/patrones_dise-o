@@ -1,30 +1,16 @@
 import 'documento.dart';
-import 'documento_excel.dart';
-import 'documento_json.dart';
-import 'documento_texto.dart';
 
-class GeneradorReportes {
-  void generarReporte(String formato, List<int> calificaciones) {
+ abstract class GeneradorReportes {
+
+  // este es el factory method
+  Documento crearDocumento();
+  void generarReporte(List<int> calificaciones) {
     if (calificaciones.isEmpty) {
-      throw ArgumentError('La lista de calificaciones no puede estar vacía');
+      throw ArgumentError('No hay calificaciones para generar el reporte.');
     }
 
-    Documento documento;
-    switch (formato.toLowerCase()) {
-      case 'texto':
-        documento = DocumentoTexto();
-        break;
-      case 'json':
-        documento = DocumentoJson();
-        break;
-      case 'excel':
-        documento = DocumentoExcel();
-        break;
-      default:
-        throw ArgumentError('Formato de documento no soportado: $formato');
-    }
-
+    final documento = crearDocumento();
     print(documento.generar(calificaciones));
-    print('Reporte generado en formato $formato');
+    print('Reporte generado exitosamente.');
   }
 }
