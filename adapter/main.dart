@@ -2,9 +2,11 @@
 import 'reproductores.dart';
 
 void main() {
-  var reproductorMP3 = ReproductorMP3();
-  var reproductorWAV = ReproductorWAV();
+  Reproductor reproductorMP3 = ReproductorMP3();
 
-  reproductorMP3.reproducirMP3("cancion.mp3");
-  reproductorWAV.reproducirWAV("cancion.wav");
+  Reproductor reproductorWAV =
+      AdaptadorWAV(ReproductorWAV());
+
+  reproductorMP3.reproducir("cancion.mp3");
+  reproductorWAV.reproducir("cancion.wav");
 }
