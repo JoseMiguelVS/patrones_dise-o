@@ -1,12 +1,13 @@
-
-import 'reproductores.dart';
+import 'tienda.dart';
+import 'terminal_externa.dart';
+import 'servicio_pago.dart';
 
 void main() {
-  Reproductor reproductorMP3 = ReproductorMP3();
+  final tienda = Tienda(ServicioPago(), TerminalExterna());
 
-  Reproductor reproductorWAV =
-      AdaptadorWAV(ReproductorWAV());
+  tienda.finalizarCompra(100, 'servicioPago');
+  tienda.finalizarCompra(100, 'terminañExterna');
 
-  reproductorMP3.reproducir("cancion.mp3");
-  reproductorWAV.reproducir("cancion.wav");
+  // la tienda mezcla su tarea de finalizar la compra
+  // con la tarea de convertir pesos a dolares, lo cual no es ideal
 }
