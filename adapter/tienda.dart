@@ -1,21 +1,12 @@
-import 'servicio_pago.dart';
-import 'terminal_externa.dart';
+import 'medio_pago.dart';
 
 class Tienda {
-  final ServicioPago servicioPago;
-  final TerminalExterna terminalExterna;
+  final MedioPago medioPago;
+  Tienda(this.medioPago);
 
-  Tienda(this.servicioPago, this.terminalExterna);
-
-  void finalizarCompra(double total, String medio) {
-    if (medio == 'servicioPago') {
-      servicioPago.pagar(total);
-    } else if (medio == 'terminalExterna') {
-      // La tienda debe convertir pesos a dolares amtes de llamar al servicio
-      final totalDolares = total / 18.25;
-      terminalExterna.cobrar(totalDolares);
-    } else {
-      throw ArgumentError('Medio de pago no soportado: $medio');
-    }
+  void finalizarCompra(double total) {
+    // Aqui debo procesar la compra:
+    // cobrar, actualizar inventario, generar proceso de envio
+    medioPago.pagar(total);
   }
 }
