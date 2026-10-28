@@ -7,8 +7,9 @@ class Agenda {
     'Decirle a chat que haga todo',
   ];
 
-  String? eliminada;
-  int? posicionAnterior;
+// Guardan la informacion de una tarea eliminada
+  String? eliminada; // La tarea eliminada
+  int? posicionAnterior; // la posicion de l tarea en el arreglo
 
   void eliminar(int posicion) {
     eliminada = tareas.removeAt(posicion);
